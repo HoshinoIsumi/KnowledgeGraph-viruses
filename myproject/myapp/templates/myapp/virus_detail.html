@@ -1,0 +1,81 @@
+<style>
+    /* 全局样式 - 设置整体页面的字体、背景、边距和文本颜色 */
+    body {
+        font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif; /* 设置使用现代简约字体 */
+        background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* 设置页面的背景为柔和的渐变色 */
+        margin: 0; /* 去掉默认的页面外边距 */
+        padding: 20px 5%;  /*页面内容左右留有 % 的空白，顶部和底部留 px */
+        color: #333; /* 设置文本颜色 */
+    }
+
+    /* 标题样式 - 控制主要标题（病毒名称）的外观 */
+    h1 {
+        color: #2d3436; /* 设置标题颜色为深灰色 */
+        font-size: 2.8rem; /* 设置标题字体大小 */
+        margin-bottom: 25px; /* 标题与下方内容的距离 */
+        text-align: left; /* 标题左对齐 */
+        font-weight: 700; /* 字体加粗 */
+        letter-spacing: 0.5px; /* 增加字母间距，提升可读性 */
+    }
+
+    /* p 元素样式 - 每条信息的显示样式 */
+    p {
+        background-color: white; /* 设置每行文本的背景为白色，卡片效果 */
+        margin: 8px 0; /* 每行上下各留 8px 空间 */
+        padding: 10px; /* 内部填充，避免文本贴边 */
+        line-height: 1.5; /* 增大行间距，提升阅读体验 */
+        font-size: 1rem; /* 设置文本字体大小 */
+        text-align: left; /* 文本左对齐 */
+        border-radius: 12px; /* 卡片的圆角效果，12px 的圆角 */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* 添加轻微阴影，增加卡片的立体感 */
+    }
+
+    /* strong 元素样式 - 强调文本，如“Aliases”、“Discovery date”等 */
+    strong {
+        color: #3c309f; /* 设置强调用紫色，与 Instagram 风格一致 */
+        font-weight: 600; /* 字体略微加粗 */
+    }
+
+    /* 卡片容器样式 - 为所有信息包裹的内容创建一个卡片式的容器 */
+    .content-card {
+        background-color: #fff; /* 背景为白色 */
+        padding: 10px; /* 卡片内部与边界的距离 */
+        border-radius: 16px; /* 卡片的圆角，16px 圆角更明显 */
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* 阴影增强，整体效果更加立体 */
+        margin-bottom: 10px; /* 卡片底部与下一个元素的间距 */
+    }
+
+    /* 响应式设计 - 优化移动设备的显示 */
+    @media (max-width: 768px) {
+        body {
+            /*padding: 20px; /* 缩小移动设备上的左右边距 */
+        }
+
+        h1 {
+            font-size: 2.2rem; /* 在移动设备上缩小标题的字体大小 */
+        }
+
+        p {
+            font-size: 0.9rem; /* 缩小文本的字体大小，适应小屏幕 */
+            padding: 10px; /* 缩小卡片内边距，节省空间 */
+        }
+    }
+</style>
+
+<div class="content-card">
+    <h1>{{ virus.virus_name }}</h1>
+    <p><strong>Aliases:</strong> {{ virus.aliases }}</p>
+    <p><strong>Discovery date:</strong> {{ virus.discovery_date|date:"Y-m-d" }}</p>
+    <p><strong>Date Release Date:</strong> {{ virus.dat_release_date|date:"Y-m-d" }}</p>
+    <p><strong>Risk Assessment:</strong> {{ virus.risk_assessment }}</p>
+    <p><strong>Origin:</strong> {{ virus.origin }}</p>
+    <p><strong>Length:</strong> {{ virus.length }}</p>
+    <p><strong>Type:</strong> {{ virus.type }}</p>
+    <p><strong>Subtype:</strong> {{ virus.subtype }}</p>
+    <p><strong>Minimum Engine:</strong> {{ virus.minimum_engine }}</p>
+    <p><strong>Minimum Dat:</strong> {{ virus.minimum_dat }}</p>
+    <p><strong>Virus Characteristics:</strong> {{ virus.virus_characteristics }}</p>
+    <p><strong>Symptoms:</strong> {{ virus.symptoms }}</p>
+    <p><strong>Method Of Infection:</strong> {{ virus.method_of_infection }}</p>
+    <p><strong>Removal Instructions:</strong> {{ virus.removal_instructions }}</p>
+</div>

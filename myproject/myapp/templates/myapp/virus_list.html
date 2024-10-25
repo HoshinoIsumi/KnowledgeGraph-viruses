@@ -1,0 +1,21 @@
+<style>
+    h1 {
+        text-indent:40px;
+        margin-bottom: 20px;
+    }
+</style>
+<h1>病毒列表</h1>
+<ul>
+    {% for virus in viruses %}
+    <li>
+        <a href="{% url 'virus_detail' virus.id %}">{{ virus.virus_name}}</a>
+        <div>
+            <span>{{ virus.aliases }}</span>
+        </div>
+    </li>
+</ul>
+<ul>
+    {% empty %}
+    <li>No viruses available.</li>
+    {% endfor %}
+</ul>
