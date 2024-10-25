@@ -1,0 +1,13 @@
+提交代码
+
+git add .
+git commit -m "描述"
+
+git status
+
+git push origin master
+
+拉取代码
+
+git pull origin master
+
