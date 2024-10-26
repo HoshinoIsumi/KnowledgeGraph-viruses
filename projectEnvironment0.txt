@@ -3,29 +3,17 @@ Python 环境
 确保已安装 Python（建议版本 >= 3.6）。可以在命令行中运行以下命令检查 Python 版本：
 python --version
 
-虚拟环境（可选且推荐）
-创建一个虚拟环境，以便隔离项目依赖：
-安装 virtualenv（如果尚未安装）
-pip install virtualenv
-# 创建虚拟环境
-virtualenv venv
-# 激活虚拟环境
-# Windows:
-venv\Scripts\activate
-# macOS/Linux:
-source venv/bin/activate
-
-3. 安装所需库
+安装所需库
 在虚拟环境中，运行以下命令安装需要的库：
 # 网络爬虫相关库
 pip install requests beautifulsoup4 sqlalchemy pymysql
 # Django（如果需要）
 pip install django
 
-4. 数据库设置
+数据库设置
 如果你使用 MySQL 数据库，确保已安装 MySQL，并根据需要创建数据库。更新代码中的数据库连接字符串以匹配你的数据库设置。
 
-5. 配置 Django（如果使用 Django）
+配置 Django（如果使用 Django）
 如果你打算使用 Django：
 创建新的 Django 项目：
 django-admin startproject your_project_name
@@ -36,7 +24,7 @@ python manage.py migrate
 启动开发服务器：
 python manage.py runserver
 
-6. 检查安装
+检查安装
 可以通过以下命令检查安装的库及其版本：
 pip show requests beautifulsoup4 sqlalchemy pymysql django
 本项目为：
