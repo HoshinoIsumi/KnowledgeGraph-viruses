@@ -26,6 +26,7 @@ python manage.py runserver
 
 neo4j 数据库设置
 如果你打算使用 neo4j 数据库，请确保已安装 neo4j，并根据需要创建数据库。更新代码中的数据库连接字符串以匹配你的数据库设置。
+link:http://10.23.100.100:7474/browser/
 username: neo4j
 password: 20040113Ming@
 
