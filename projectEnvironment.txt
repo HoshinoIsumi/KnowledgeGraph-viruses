@@ -27,8 +27,7 @@ django.contrib.sessions
 django.contrib.messages
 django.contrib.staticfiles
 自定义应用：myapp
-中间件配置：
-启用了多个Django中间件，用于安全、会话管理、CSRF保护等。
+中间件配置：启用了多个Django中间件，用于安全、会话管理、CSRF保护等。
 
 国际化设置：
 语言代码：en-us
@@ -39,8 +38,7 @@ django.contrib.staticfiles
 默认主键字段类型：使用BigAutoField作为默认主键字段类型。
 
 通过pip工具来安装这些Python库。
-安装命令
-在你的命令行或终端中运行以下命令：
+安装命令：
 pip install requests beautifulsoup4 sqlalchemy pymysql
 说明:
 requests：用于发送HTTP请求。
