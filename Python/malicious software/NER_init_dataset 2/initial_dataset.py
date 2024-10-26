@@ -1,6 +1,6 @@
 import codecs
-data_path = "./init_data.txt"
-save_path = "./data_set.txt"
+data_path = "/home/isumi/Progect/Python/malicious software/NER_init_dataset 2/init_data.txt"
+save_path = "/home/isumi/Progect/Python/malicious software/NER_init_dataset 2/data_set.txt"
 lines = ''
 seq = ''
 #读取数据

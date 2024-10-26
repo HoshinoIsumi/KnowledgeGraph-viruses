@@ -1,8 +1,8 @@
 用	O
-M	B-NAME
-B	I-NAME
-R	I-NAME
-/	I-NAME
+M	O
+B	O
+R	O
+/	O
 引	O
 导	O
 扇	O
@@ -49,9 +49,9 @@ R	I-NAME
 硬	O
 盘	O
 的	O
-M	B-ORG
-B	I-ORG
-R	I-ORG
+M	O
+B	O
+R	O
 ，	O
 并	O
 可	O

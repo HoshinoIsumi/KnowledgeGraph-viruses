@@ -1,8 +1,8 @@
 import json
 import codecs
 
-data_path = "./data_init.txt"
-save_path = "./data.json"
+data_path = "/home/isumi/Progect/Python/malicious software/Neo4j_init_dataset/data_init.txt"
+save_path = "/home/isumi/Progect/Python/malicious software/Neo4j_init_dataset/data.json"
 #read data
 with codecs.open(data_path, 'r', encoding='utf-8') as f:
     lines = f.readlines()

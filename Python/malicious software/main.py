@@ -1,6 +1,6 @@
 import codecs
-path = './data/test.txt'
-path_1 = './test_1.txt'
+path = '/home/isumi/Progect/Python/malicious software/data/test.txt'
+path_1 = '/home/isumi/Progect/Python/malicious software/test_1.txtt'
 s = ''
 with codecs.open(path, 'r', encoding='utf-8') as f:
     lines = f.readlines()

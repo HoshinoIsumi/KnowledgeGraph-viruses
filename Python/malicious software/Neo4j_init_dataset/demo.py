@@ -1,7 +1,7 @@
 import codecs
 import json
-path = "./data_init.txt"
-save = "./data.json"
+path = "/home/isumi/Progect/Python/malicious software/Neo4j_init_dataset/demo.txt"
+save = "/home/isumi/Progect/Python/malicious software/Neo4j_init_dataset/data.json"
 p = []
 total = []
 dict = {}
