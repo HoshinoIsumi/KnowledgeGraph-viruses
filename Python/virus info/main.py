@@ -101,7 +101,7 @@ def extract_virus_links(url):
     return links
 
 
-def append_to_json_file(data, filename='all_virus_info.json'):
+def append_to_json_file(data, filename='/home/isumi/Progect/Python/virus info/all_virus_info.json'):
     with open(filename, 'a', encoding='utf-8') as file:
         json.dump(data, file, ensure_ascii=False)
         file.write('\n')
@@ -250,7 +250,7 @@ def main(start_url):
 
     visited_links = set()
     try:
-        with open('visited_links.txt', 'r', encoding='utf-8') as file:
+        with open('/home/isumi/Progect/Python/virus info/visited_links.txt', 'r', encoding='utf-8') as file:
             visited_links = set(line.strip() for line in file)
     except FileNotFoundError:
         print("visited_links.txt 文件未找到，将从头开始。")
@@ -260,7 +260,7 @@ def main(start_url):
         if link not in visited_links:
             process_virus_page(link)
             visited_links.add(link)
-            with open('visited_links.txt', 'a', encoding='utf-8') as file:
+            with open('/home/isumi/Progect/Python/virus info/visited_links.txt', 'a', encoding='utf-8') as file:
                 file.write(link + '\n')
 
 if __name__ == '__main__':
