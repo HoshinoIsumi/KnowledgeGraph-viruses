@@ -73,6 +73,8 @@ def parse_content(html_content):
             data['length'] = fonts[i + 1].get_text(strip=True) if i + 1 < len(fonts) else ""
         elif "Type" in text:
             data['type'] = fonts[i + 1].get_text(strip=True) if i + 1 < len(fonts) else ""
+        elif "SubType" in text:
+            data['subtype'] = fonts[i + 1].get_text(strip=True) if i + 1 < len(fonts) else ""
         elif "Risk Assessment" in text:
             data['risk_assessment'] = fonts[i + 1].get_text(strip=True) if i + 1 < len(fonts) else ""
         elif "Minimum Engine" in text:
@@ -128,6 +130,7 @@ class VirusInfo(Base):
     origin = Column(String(255))
     length = Column(String(255))
     type = Column(String(255))
+    subtype = Column(String(255))
     risk_assessment = Column(String(255))
     minimum_engine = Column(String(255))
     minimum_dat = Column(String(255))
@@ -208,6 +211,7 @@ def insert_virus_data(data, session):
             origin=data.get('origin'),
             length=data.get('length'),
             type=data.get('type'),
+            subtype=data.get('subtype'),
             risk_assessment=data.get('risk_assessment'),
             minimum_engine=data.get('minimum_engine'),
             minimum_dat=data.get('minimum_dat'),
