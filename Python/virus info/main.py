@@ -46,7 +46,13 @@ def parse_content(html_content):
     # Extract virus name
     virus_name_element = soup.find('b', string="Virus Name")
     if virus_name_element:
-        data['virus_name'] = virus_name_element.find_next('br').next_sibling.strip()
+        # 获取下一个 <br> 标签
+        br_element = virus_name_element.find_next('br')
+        if br_element:
+            # 获取 <br> 后的下一个兄弟节点
+            virus_name = br_element.next_sibling
+            if virus_name:  # 确保存在有效文本
+                data['virus_name'] = virus_name.strip()
 
     # Extract aliases
     aliases_element = soup.find('b', string="Aliases")
@@ -263,27 +269,6 @@ def main(start_url):
 
 if __name__ == '__main__':
     start_urls = [
-        'https://web.archive.org/web/20001210063100/http://vil.nai.com/villib/alphar.asp?char=a',
-        'https://web.archive.org/web/20001210063100/http://vil.nai.com/villib/alphar.asp?char=b',
-        'https://web.archive.org/web/20001210063100/http://vil.nai.com/villib/alphar.asp?char=c',
-        'https://web.archive.org/web/20001210063100/http://vil.nai.com/villib/alphar.asp?char=d',
-        'https://web.archive.org/web/20001210063100/http://vil.nai.com/villib/alphar.asp?char=e',
-        'https://web.archive.org/web/20001210063100/http://vil.nai.com/villib/alphar.asp?char=f',
-        'https://web.archive.org/web/20001210120100/http://vil.nai.com/villib/alphar.asp?char=g',
-        'https://web.archive.org/web/20001210125700/http://vil.nai.com/villib/alphar.asp?char=h',
-        'https://web.archive.org/web/20001210144700/http://vil.nai.com/villib/alphar.asp?char=i',
-        'https://web.archive.org/web/20001210153900/http://vil.nai.com/villib/alphar.asp?char=j',
-        'https://web.archive.org/web/20001210163300/http://vil.nai.com/villib/alphar.asp?char=k',
-        'https://web.archive.org/web/20001210173600/http://vil.nai.com/villib/alphar.asp?char=l',
-        'https://web.archive.org/web/20001210183100/http://vil.nai.com/villib/alphar.asp?char=m',
-        'https://web.archive.org/web/20001210192700/http://vil.nai.com/villib/alphar.asp?char=n',
-        'https://web.archive.org/web/20001210202000/http://vil.nai.com/villib/alphar.asp?char=o',
-        'https://web.archive.org/web/20011106231228/http://vil.nai.com/villib/alphar.asp?char=p',
-        'https://web.archive.org/web/20000930015653/http://vil.nai.com/villib/alphar.asp?char=q',
-        'https://web.archive.org/web/20001210232300/http://vil.nai.com/villib/alphar.asp?char=r',
-        'https://web.archive.org/web/20001211013300/http://vil.nai.com/villib/alphar.asp?char=s',
-        'https://web.archive.org/web/20001211023700/http://vil.nai.com/villib/alphar.asp?char=t',
-        'https://web.archive.org/web/20000623062035/http://vil.nai.com/villib/alphar.asp?char=u',
         'https://web.archive.org/web/20001211042000/http://vil.nai.com/villib/alphar.asp?char=v',
         'https://web.archive.org/web/20001211052000/http://vil.nai.com/villib/alphar.asp?char=w',
         'https://web.archive.org/web/20001211074400/http://vil.nai.com/villib/alphar.asp?char=x',

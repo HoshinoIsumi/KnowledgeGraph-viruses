@@ -13,7 +13,6 @@ class VirusInfo(models.Model):
     origin = models.CharField(max_length=255)
     length = models.CharField(max_length=255)
     type = models.CharField(max_length=255)
-    subtype = models.CharField(max_length=255)
     risk_assessment = models.CharField(max_length=255)
     minimum_engine = models.CharField(max_length=255)
     minimum_dat = models.CharField(max_length=255)
