@@ -7,7 +7,6 @@ from neo4j import GraphDatabase
 stanza.download('en')
 nlp = stanza.Pipeline(lang='en', processors='tokenize,mwt,pos,lemma,depparse,ner')
 
-
 # 从文件中读取数据
 def load_virus_data(file_path):
     try:
@@ -17,7 +16,6 @@ def load_virus_data(file_path):
     except Exception as e:
         print(f"Error loading data: {e}")
         return []
-
 
 # 提取病毒特征信息
 def extract_virus_characteristics(virus_characteristics):
@@ -31,7 +29,6 @@ def extract_virus_characteristics(virus_characteristics):
 
     file_length_increases = {match[0].strip(): match[1].strip() for match in increases if len(match) == 2}
     return symptoms, file_length_increases
-
 
 class TextProcessor:
     def __init__(self, text):
@@ -78,7 +75,6 @@ class TextProcessor:
         self.extract_entities()
         self.extract_relations_and_attributes()
         self.create_triples()
-
 
 # 构建知识图谱
 def build_knowledge_graph(data, output_file):
@@ -138,7 +134,6 @@ def build_knowledge_graph(data, output_file):
     except Exception as e:
         print(f"Error processing data: {e}")
 
-
 # 构建 Neo4j 知识图谱
 def create_knowledge_graph_in_neo4j(triples, uri, user, password):
     try:
@@ -152,7 +147,6 @@ def create_knowledge_graph_in_neo4j(triples, uri, user, password):
                     """, subj=subj, obj=obj)
     except Exception as e:
         print(f"Error connecting to Neo4j: {e}")
-
 
 # 主函数
 if __name__ == "__main__":

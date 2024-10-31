@@ -1,10 +1,21 @@
+安装 neo4j
+sudo apt install openjdk-11-jre #安装JDK
+sudo apt update
+sudo apt install neo4j
+启动服务并设为开机自启
+sudo systemctl start neo4j
+sudo systemctl enable neo4j
+通过http://localhost:7474访问
+初始卡密为neo4j/neo4j
+
+需要安装的支持
+pip install neo4j
+pip install stanza
+
 切换数据库
-
 sudo nano /etc/neo4j/neo4j.conf
-
 sudo systemctl restart neo4j
 
 清空数据库
-
 MATCH (n)
 DETACH DELETE n
