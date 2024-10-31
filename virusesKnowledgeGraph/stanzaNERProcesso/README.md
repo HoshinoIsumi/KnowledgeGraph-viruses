@@ -13,7 +13,12 @@ pip install neo4j
 pip install stanza
 
 切换数据库
+原理为切换一个新的默认数据库，顶掉原来的数据库，但是原来的不会被删除
+打开配置文件
 sudo nano /etc/neo4j/neo4j.conf
+找到 #initial.dbms.default_database=neo4j
+将 neo4j 改为自己的新数据库名后取消注释
+运行下面的命令重启数据库即可
 sudo systemctl restart neo4j
 
 清空数据库
