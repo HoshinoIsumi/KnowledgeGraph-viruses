@@ -29,7 +29,7 @@ def extract_virus_characteristics(virus_characteristics):
     return symptoms, file_length_increases
 
 
-# 构建知识图谱
+# 知识图谱
 def build_knowledge_graph(data):
     knowledge_graph_triples = []
 
@@ -37,7 +37,7 @@ def build_knowledge_graph(data):
         virus_name = entry.get("virus_name", "Unknown")
 
         if virus_name == "Unknown":
-            continue  # 跳过病毒名未知的条目
+            continue  # 跳过无效条目
 
         # 处理病毒节点
         knowledge_graph_triples.append((virus_name, "is_a", "Virus"))

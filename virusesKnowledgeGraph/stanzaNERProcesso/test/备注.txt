@@ -1,0 +1,10 @@
+切换数据库
+
+sudo nano /etc/neo4j/neo4j.conf
+
+sudo systemctl restart neo4j
+
+清空数据库
+
+MATCH (n)
+DETACH DELETE n
