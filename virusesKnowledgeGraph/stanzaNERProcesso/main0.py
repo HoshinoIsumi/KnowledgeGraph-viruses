@@ -21,7 +21,7 @@ def extract_virus_characteristics(virus_characteristics):
     file_increase_pattern = re.compile(r'Infected \.(.*?) files have a file length increase of (.*?)(?=\.\s|$)',
                                        re.DOTALL)
     increases = file_increase_pattern.findall(virus_characteristics)
-
+    # 创建一部字典，存储文件类型及其对应的长度增加信息
     file_length_increases = {match[0].strip(): match[1].strip() for match in increases if len(match) == 2}
 
     return symptoms, file_length_increases
@@ -36,7 +36,7 @@ def build_knowledge_graph(data):
         if virus_name == "Unknown":
             continue  # 跳过无效条目
 
-        # 处理病毒节点
+        # 为病毒添加一个"is_a"关系到"Virus"节点
         knowledge_graph_triples.append((virus_name, "is_a", "Virus"))
 
         # 处理特征和属性
