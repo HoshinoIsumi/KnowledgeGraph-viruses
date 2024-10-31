@@ -21,6 +21,7 @@ MATCH (n)
 DETACH DELETE n
 
 
+不包含 NER 命名实体识别
 main0:
     实体：
         Virus - 用于表示病毒类别。
