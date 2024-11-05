@@ -100,8 +100,8 @@ def create_knowledge_graph_in_neo4j(triples, uri, user, password):
 
 # 主函数
 if __name__ == "__main__":
-    file_path = "/home/isumi/Progect/virusesKnowledgeGraph/stanzaNERProcesso/all_virus_info.json"  # 文件路径
-    output_file = "/home/isumi/Progect/virusesKnowledgeGraph/stanzaNERProcesso/triples0.json"  # 输出文件路径
+    file_path = "/stanzaNERProcesso/all_virus_info.json"  # 文件路径
+    output_file = "/stanzaNERProcesso/triples0.json"  # 输出文件路径
     neo4j_uri = "bolt://localhost:7687"  # Neo4j URI
     neo4j_user = "newneo4j"  # Neo4j 用户名
     neo4j_password = "20040113ming"  # Neo4j 密码

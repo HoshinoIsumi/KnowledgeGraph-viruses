@@ -1,6 +1,21 @@
+运行环境为
+Linux                    Linux isumi-Lenovo-16 6.8.0-47-generic #47~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Oct  2 16:16:55 UTC 2 x86_64 x86_64 x86_64 GNU/Linu
+stanza                   1.9.2
+neo4j                    5.25.0
+Python                   3.8.18
+
 安装 neo4j
-sudo apt install openjdk-11-jre #安装JDK
 sudo apt update
+安装 Neo4j 的第一步是添加 GPG 密钥。
+curl -fsSL https://debian.neo4j.com/neotechnology.gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/neo4j.gpg
+将 Neo4j 存储库添加到您的系统 APT 源目录。
+echo "deb [signed-by=/usr/share/keyrings/neo4j.gpg] https://debian.neo4j.com stable latest" | sudo tee -a /etc/apt/sources.list.d/neo4j.list
+为避免升级到下一个主要版本的风险，您可以在上述命令中指定所需的主要和次要版本来代替 latest。
+以下命令将添加 Neo4j 5.x 存储库，这意味着无论何时发布，您都不会升级到 6.x 版本。
+echo "deb [signed-by=/usr/share/keyrings/neo4j.gpg] https://debian.neo4j.com stable 5" | sudo tee -a /etc/apt/sources.list.d/neo4j.list
+更新系统存储库列表。 
+sudo apt update
+安装 Neo4j 社区版。
 sudo apt install neo4j
 启动服务并设为开机自启
 sudo systemctl start neo4j
@@ -24,7 +39,6 @@ sudo systemctl restart neo4j
 清空数据库
 MATCH (n)
 DETACH DELETE n
-
 
 不包含 NER 命名实体识别
 main0:
