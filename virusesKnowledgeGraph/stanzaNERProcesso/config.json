@@ -1,0 +1,9 @@
+{
+    "input_file": "data.json",
+    "output_file": "triples.json",
+    "neo4j_uri": "bolt://localhost:7687",
+    "neo4j_user": "neo4j",
+    "neo4j_password": "your_password",
+    "output_to_file": true,
+    "insert_into_neo4j": true
+}
