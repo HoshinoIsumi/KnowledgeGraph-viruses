@@ -89,33 +89,43 @@ def build_knowledge_graph(data, output_file):
                 # 处理病毒节点
                 knowledge_graph_triples = [(virus_name, "is_a", "Virus")]
 
-                # 处理特征和属性
-                attributes = [
-                    ("aliases", entry.get("aliases", None)),
-                    ("discovery_date", entry.get("discovery_date", None)),
-                    ("length", entry.get("length", None)),
-                    ("origin", entry.get("origin", None)),
-                    ("risk_assessment", entry.get("risk_assessment", None)),
-                    ("minimum_dat", entry.get("minimum_dat", None)),
-                    ("dat_release_date", entry.get("dat_release_date", None)),
-                    ("symptoms", entry.get("symptoms", None)),
-                    ("method_of_infection", entry.get("method_of_infection", None)),
-                    ("removal_instructions", entry.get("removal_instructions", None)),
-                ]
+                # 处理病毒的各类属性，直接将字段名称作为节点类型
+                virus_properties = {
+                    "Alias": entry.get("aliases", None),
+                    "Discovery Date": entry.get("discovery_date", None),
+                    "Length": entry.get("length", None),
+                    "Origin": entry.get("origin", None),
+                    "Risk Assessment": entry.get("risk_assessment", None),
+                    "Minimum DAT": entry.get("minimum_dat", None),
+                    "DAT Release Date": entry.get("dat_release_date", None),
+                    "Symptoms": entry.get("symptoms", None),
+                    "Method of Infection": entry.get("method_of_infection", None),
+                    "Removal Instructions": entry.get("removal_instructions", None),
+                }
 
-                for attr, value in attributes:
-                    if value:  # 仅在值不为空时添加三元组
-                        knowledge_graph_triples.append((virus_name, "has_" + attr, value))
+                # 将字段名称作为属性标签，并将属性值存储在节点上
+                for prop, value in virus_properties.items():
+                    if value:  # 仅在值不为空时添加属性节点
+                        # 替换空格为下划线，确保节点标签合法
+                        prop_label = prop.replace(" ", "_")
+                        property_node = f"{prop_label}_{value[:10]}"  # 使用属性值的前10个字符作为节点的唯一标识
+                        knowledge_graph_triples.append((virus_name, "has_" + prop_label, property_node))
+                        knowledge_graph_triples.append((property_node, "is_a", prop_label))  # 每个属性节点的类型为属性名称
+                        knowledge_graph_triples.append((property_node, "has_value", value))  # 属性值作为该节点的属性
 
                 # 提取病毒特征信息并生成属性
                 symptoms, file_length_increases = extract_virus_characteristics(entry.get("virus_characteristics", ""))
                 if symptoms:
-                    knowledge_graph_triples.append((virus_name, "has_symptoms", symptoms))
+                    knowledge_graph_triples.append((virus_name, "has_Symptoms", "Symptoms_" + symptoms[:10]))
+                    knowledge_graph_triples.append(("Symptoms_" + symptoms[:10], "is_a", "Symptoms"))
+                    knowledge_graph_triples.append(("Symptoms_" + symptoms[:10], "has_value", symptoms))
 
                 for file_type, length in file_length_increases.items():
-                    if length:  # 仅在长度不为空时添加三元组
-                        knowledge_graph_triples.append(
-                            (virus_name, f"{file_type.replace('-', '_')}_length_increase", length))
+                    if length:  # 仅在长度不为空时添加属性节点
+                        length_node = f"{file_type.replace('-', '_')}_Length_{length[:10]}"
+                        knowledge_graph_triples.append((virus_name, "has_" + file_type.replace("-", "_"), length_node))
+                        knowledge_graph_triples.append((length_node, "is_a", file_type.replace("-", "_")))
+                        knowledge_graph_triples.append((length_node, "has_value", length))
 
                 # 添加更多的关系或属性提取
                 processor = TextProcessor(entry.get("virus_characteristics", ""))
@@ -140,11 +150,25 @@ def create_knowledge_graph_in_neo4j(triples, uri, user, password):
         with GraphDatabase.driver(uri, auth=(user, password)) as driver:
             with driver.session() as session:
                 for subj, rel, obj in triples:
-                    session.run(f"""
-                        MERGE (a:Virus {{name: $subj}})
-                        MERGE (b:Entity {{name: $obj}})
-                        MERGE (a)-[:{rel.replace('-', '_')}]->(b)
-                    """, subj=subj, obj=obj)
+                    # 如果属性节点的类型是 Alias, Discovery Date 等，直接创建属性节点
+                    if "has_" in rel:
+                        session.run(f"""
+                            MERGE (a:Virus {{name: $subj}})
+                            MERGE (b:{rel.replace('has_', '')} {{name: $obj}})
+                            MERGE (a)-[:HAS_PROPERTY]->(b)
+                        """, subj=subj, obj=obj)
+                    elif "is_a" in rel:
+                        session.run(f"""
+                            MERGE (a:{obj} {{name: $subj}})
+                            MERGE (b:{obj} {{name: $obj}})
+                            MERGE (a)-[:IS_A]->(b)
+                        """, subj=subj, obj=obj)
+                    else:
+                        session.run(f"""
+                            MERGE (a:Virus {{name: $subj}})
+                            MERGE (b:Entity {{name: $obj}})
+                            MERGE (a)-[:{rel.replace('-', '_')}]->(b)
+                        """, subj=subj, obj=obj)
     except Exception as e:
         print(f"Error connecting to Neo4j: {e}")
 
