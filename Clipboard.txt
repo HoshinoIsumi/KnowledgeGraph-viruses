@@ -1,1 +1,1 @@
-https://mojie.co/api/v1/client/subscribe?token=c82b8c7f8add1c7ad8b1ebcb21cb3e2c
+https://bajie.la/api/v1/client/subscribe?token=5a99b1d7bdcace301522699c249a1acc
